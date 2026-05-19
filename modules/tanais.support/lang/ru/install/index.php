@@ -1,0 +1,5 @@
+<?php
+
+$MESS['MYMODULE_MODULE_NAME'] = 'Поддержка';
+$MESS['MYMODULE_MODULE_DESCRIPTION'] = 'Поддержка';
+$MESS['MYMODULE_MODULE_PARTNER_NAME'] = 'Tanais';

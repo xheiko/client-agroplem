@@ -1,0 +1,11 @@
+log
+tanais
+archive
+*/log/*
+*/logs/*
+*/cache/*
+*/tmp/*
+*/backup/*
+*/archive/*
+*/.git/*
+*.tar.gz

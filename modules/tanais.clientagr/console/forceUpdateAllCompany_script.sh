@@ -1,0 +1,1 @@
+nice -n -20 /usr/bin/php -f ./forceUpdateAllCompany_script.php;

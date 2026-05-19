@@ -1,0 +1,3 @@
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
+<span class="reportstatscount"><span class="title">Суммарное количество запросов к отчёту, за последние 7 дней:</span> <span class="value"><?= $arResult['COUNT'] ?></span>.</span>
+<span class="reportstatsaverage"><span class="title">Среднее время открытия отчёта:</span> <span class="value"><?= round($arResult['AVERAGE_TIME'], 2) ?></span>.</span>

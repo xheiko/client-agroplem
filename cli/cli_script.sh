@@ -1,0 +1,1 @@
+nice -n -20 /usr/bin/php -f /home/bitrix/www/local/cli/cli_script.php;

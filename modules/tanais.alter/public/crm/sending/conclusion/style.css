@@ -1,0 +1,439 @@
+hr {
+    /*
+    border-color: #77B300;
+    border-style: dashed;
+    border-width: 0 0px 2px 0;
+    */
+    margin: 9px 0px;
+    border-color: white;
+    opacity: 0;
+}
+:focus-visible {
+    outline-offset: unset;
+    outline: unset;
+}
+
+body {
+    background: #eef2f4;
+    padding: 24px 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+.pattern{
+    max-width: max-content;
+    position: relative;
+    font-size: 13px;
+    margin: 10px 0px 10px auto;
+}
+.pattern span{
+    position: static;
+    max-width: max-content;
+    margin-right: 10px;
+}
+
+#select-pattern{
+    position: static;
+    border: 0px solid #c6cdd3;
+    border-radius: var(--ui-tile-selector-selector-border-radius,var(--ui-border-radius-2xs,2px));
+    background-color: #eef2f4;
+}
+
+.theme {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 2px 3px;
+    min-height: 33px !important;
+    background: #fff;
+    border: 1px solid #c6cdd3;
+    padding-left: 10px;
+    width: 100% !important;
+    border-radius: var(--main-mail-form-field-border-radius, var(--ui-border-radius-2xs, 2px));
+    font: 14px/29px var(--ui-font-family-primary, var(--ui-font-family-helvetica));
+}
+
+
+
+.mail .type {
+    margin: 0 0 26px 63px;
+    position: relative;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mail .type .text > span {
+    padding: 0 10px;
+}
+
+.mail .type .text {
+    min-width: 30%;
+}
+
+.mail .type:before {
+    position: absolute;
+    top: 3px;
+    left: -63px;
+    display: inline-block;
+    width: 47px;
+    height: 34px;
+    background: url(/bitrix/js/crm/images/task-list-sprite.svg?5);
+    content: "";
+}
+
+.mail .type .question {
+    background-color: #e2e3e5;
+    border-radius: 107px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mail .type .question.active {
+    background-color: #ba66ff;
+    color: white;
+    outline: 3px solid #8b00ff;
+}
+
+.mail.question .help {
+    outline: 2px dashed #8b00ff;
+    border-radius: 6px;
+    outline-offset: 3px;
+    position: relative;
+}
+
+.mail .help .help-text {
+    display: none;
+}
+
+.mail.question .help .help-text {
+    position: absolute;
+    background-color: rgb(186 102 255 / 10%);
+    width: 100%;
+    height: 100%;
+    border-radius: 9px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border: 3px solid rgb(186 102 255 / 0);
+    left: -3px;
+    font-size: 15px;
+    top: -3px;
+}
+
+.mail.question .help .help-text > span {
+    padding: 0 15px;
+    text-align: right;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 2px 3px;
+    min-height: 33px !important;
+    background: #fff;
+    border: 1px solid #c6cdd3;
+    border-radius: var(--ui-tile-selector-selector-border-radius, var(--ui-border-radius-2xs, 2px));
+    font: 13px/29px var(--ui-font-family-primary, var(--ui-font-family-helvetica));
+}
+
+.mail.question .help > span:not(.help-text):not(.title),
+.mail.question .help > p:not(.help-text) {
+    filter: blur(2px);
+}
+
+.mail .body {
+    background-color: white;
+    padding: 20px 15px;
+}
+
+.mail .body .header,
+.mail .body .files {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*width: 90%;*/
+}
+
+.main-user-selector-wrap, .wrap-title__input {
+    width: 90%;
+}
+
+@media screen and (max-width: 1024px) {
+    .main-user-selector-wrap, .wrap-title__input {
+        width: 85%;
+    }
+}
+
+.mail .body .header,
+.mail .body .files,
+.mail .body .body-text {
+    padding: 0 10px;
+}
+
+.mail .body label.title {
+    font-weight: bold;
+    color: #4a4b4c;
+    margin-right: 15px;
+}
+
+.mail .body span.title {
+    font-weight: bold;
+    color: #4a4b4c;
+    margin-right: 15px;
+}
+
+.mail .body span.value {
+    border: 1px solid #c6cdd3;
+    border-radius: var(--ui-tile-selector-selector-border-radius, var(--ui-border-radius-2xs, 2px));
+    padding: 0 5px 5px 5px;
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.mail .body span.value2 {
+    border-radius: 2px;
+    padding: 0 5px 5px 11px;
+    border-radius: var(--ui-tile-selector-selector-border-radius, var(--ui-border-radius-2xs, 2px));
+    font: 14px/29px var(--ui-font-family-primary, var(--ui-font-family-helvetica));
+}
+
+/*.mail .body span.value span {*/
+/*    background: #e2e3e5;*/
+/*    color: #535c69;*/
+/*    padding: 5px 10px;*/
+/*    margin-right: 5px;*/
+/*    margin-top: 5px;*/
+/*    position: relative;*/
+/*    display: block;*/
+/*    overflow: hidden;*/
+/*    padding: 2px 3px;*/
+/*    min-height: 33px !important;*/
+/*    background: #fff;*/
+/*    border: 1px solid #c6cdd3;*/
+/*    font-size: 13px;*/
+/*    border-radius: var(--ui-tile-selector-selector-border-radius, var(--ui-border-radius-2xs, 2px));*/
+/*    font: 13px/29px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';*/
+/*}*/
+
+.mail .body span.value span {
+    background: #e2e3e5;
+    color: #535c69;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    border-radius: var(--ui-tile-selector-item-border-radius,var(--ui-border-radius-3xs));
+    font: 13px/29px var(--ui-font-family-primary,var(--ui-font-family-helvetica));
+    font-weight: var(--ui-font-weight-bold);
+}
+
+.mail .body .files {
+    background-image: url("data:image/svg+xml,%3Csvg width='14' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.258 6.285a.58.58 0 00.003-.817c-1.24-1.254-2.61-2.608-3.865-3.861-2.142-2.143-5.647-2.143-7.79 0-2.142 2.142-2.142 5.647 0 7.79l5.37 5.369a4.138 4.138 0 005.843 0 4.138 4.138 0 000-5.842l-4.721-4.72a2.75 2.75 0 00-3.895 0 2.75 2.75 0 000 3.894l3.085 3.085a.58.58 0 00.821 0l.477-.477a.58.58 0 000-.822L5.501 6.8a.909.909 0 010-1.299.909.909 0 011.299 0l4.72 4.721a2.296 2.296 0 01-3.245 3.246l-5.37-5.37a3.683 3.683 0 010-5.193 3.683 3.683 0 015.193 0c1.26 1.26 2.558 2.58 3.862 3.866a.58.58 0 00.816-.004l.482-.482z' fill='%23525C69' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 10px;
+}
+
+.mail .body .files span.title {
+    margin-left: 25px;
+}
+
+.button.send {
+    border: 0px;
+}
+.mail .button.send {
+    background-color: #3bc8f5;
+    color: white;
+    width: fit-content;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 15px;
+    min-width: 100px;
+    min-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mail .button.send.calm {
+    cursor: pointer;
+}
+
+.mail .button.send:hover {
+    background-color: #3eddff
+}
+
+.mail .button.send.loading {
+    background-color: #fff6bf;
+}
+
+.mail .button.send.ready {
+    background-color: #9ece00;
+}
+
+.mail .button.send.error {
+    background-color: #f54819;
+}
+
+.mail .button.send .loading img {
+    width: 20px;
+}
+
+.mail .button.send.calm > span:not(.calm),
+.mail .button.send.loading > span:not(.loading),
+.mail .button.send.ready > span:not(.ready),
+.mail .button.send.error > span:not(.error) {
+    display: none;
+}
+
+.mail #rezult {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid red;
+    background-color: white;
+    /*display: none;*/
+}
+
+details summary {
+    cursor: pointer;
+    padding: 10px 5px;
+}
+
+details .inner {
+    background-color: white;
+    padding: 15px 25px;
+}
+
+[data-type='string'] {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+[data-type='string'] .name {
+    font-weight: bold;
+    width: 100px;
+    color: #4a4b4c;
+    margin-right: 15px;
+}
+
+[data-type='string'] .value {
+    border: 1px solid #c6cdd3;
+    border-radius: 2px;
+    padding: 0 5px 5px 5px;
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/*[data-type='string'] .value > span {*/
+/*    background: #e2e3e5;*/
+/*    color: #535c69;*/
+/*    padding: 5px 10px;*/
+/*    margin-right: 5px;*/
+/*    margin-top: 5px;*/
+/*    position: relative;*/
+/*    display: block;*/
+/*    overflow: hidden;*/
+/*    padding: 2px 3px;*/
+/*    min-height: 33px !important;*/
+/*    background: #fff;*/
+/*    border: 1px solid #c6cdd3;*/
+/*    border-radius: var(--ui-tile-selector-selector-border-radius, var(--ui-border-radius-2xs, 2px));*/
+/*    font: 13px/29px var(--ui-font-family-primary, var(--ui-font-family-helvetica));*/
+/*}*/
+
+[data-type='string'] .value > span {
+    background: #e2e3e5;
+    color: #535c69;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+span .files {
+    background: #e2e3e5;
+    color: #535c69;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+
+[data-type='text'] .name {
+    font-weight: bold;
+    color: #4a4b4c;
+    margin-bottom: 5px;
+}
+
+[data-type='text'] .name b {
+    color: black;
+}
+
+[data-type='text'] .value {
+    border: 1px solid #c6cdd3;
+    border-radius: 2px;
+    padding: 0 15px 5px 15px;
+    margin-bottom: 10px;
+}
+
+[data-type='text'] [data-type='text'] {
+    margin: 15px 0;
+}
+
+details .buttons {
+    display: flex;
+    align-items: center;
+}
+
+details .buttons .text {
+    margin-top: 10px;
+}
+
+details .button.send {
+    background-color: #3bc8f5;
+    color: white;
+    width: fit-content;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-right: 20px;
+    min-width: 100px;
+    min-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+details .button.send.loading {
+    background-color: #fff6bf;
+}
+
+details .button.send .loading img {
+    width: 20px;
+}
+
+.wrap-title__input .value span {
+}
+
+details .button.send.ready {
+    background-color: #9ece00;
+}
+
+details .button.send.error {
+    background-color: #f54819;
+}
+span.alert{
+    font-size:200%;
+
+}
+
+IMG.displayed {
+    width: 100px;
+    height: 100px;
+}

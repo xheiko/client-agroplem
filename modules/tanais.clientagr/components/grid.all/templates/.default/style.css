@@ -1,0 +1,37 @@
+.goal-hints-block {
+  margin: 10px 0px;
+  color: #535c69;
+  font: 13px "OpenSans-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.buttonContainer {
+  padding-left: 15px;
+}
+.goals-counter-name:first-of-type {
+  margin-left: 0;
+} /* #curDynGoalStatusUPD */
+.bold {
+  font-weight: 600;
+} /* #curDynGoalStatusUPD */
+
+#generated_time {
+  font-style: italic;
+  color: white;
+  margin: 10px;
+}
+#data_cached {
+  font-style: italic;
+  color: white;
+  /* margin: 10px; */
+}
+#data_actual_time {
+  font-style: italic;
+  color: white;
+  /* margin: 10px; */
+}
+.gridall-user-container {
+  display: flex;
+  align-items: center;
+}
+.gridall-user-container .ui-icon-common-user {
+  margin-right: 10px;
+}
