@@ -22,9 +22,9 @@ use \Bitrix\Crm\Service;
 
 $APPLICATION->SetAdditionalCss("/alter/crm/sending/conclusion/style.css");
 ?>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-            crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
 
 <?php
 
@@ -76,7 +76,7 @@ if (CModule::IncludeModule("crm")) {
 
     if (!$smartProcessElements['PARENT_ID_2']) { ?>
         <h1 style="color: red; text-align: center; margin-top: 20%;">Не выбрана сделка!</h1>
-        <?php
+<?php
         die();
     }
     $id = $smartProcessElements['PARENT_ID_2'];
@@ -379,8 +379,8 @@ if (CModule::IncludeModule("crm")) {
         Команда лабораторно-исследовательского центра<br>
         <a href="https://agroplem.ru/" target="_blank">«Агроплем»</a></p><br>';
         //        $email_body5 .= '<p>С уважением,<br>
-//        Команда лабораторно-исследовательского центра<br>
-//        <a href="https://agroplem.ru/" target="_blank">«Агроплем»</a></p><br>';
+        //        Команда лабораторно-исследовательского центра<br>
+        //        <a href="https://agroplem.ru/" target="_blank">«Агроплем»</a></p><br>';
     }
     if ($labaratory == 'soil') {
         //  $fromName = 'Почвенная лаборатория Агроплем';
@@ -527,7 +527,7 @@ if (CModule::IncludeModule("crm")) {
             $bodySend .= '<p>Пожалуйста, сообщите, необходима ли автоматическая загрузка данных в Селэкс.</p><br>';
         }
 
-
+        // d([$trySour, $tryMade, $complexSouring]);
         if ((($trySour >= $tryMade) || ($complexSouring == '1')) && ($tryMade != 0)):
             $bodySend .= '<p>Обращаем внимание, что часть проб поступила с признаками скисания. Рекомендуем Вам провести мойку пробоотборников щелочными и кислотными растворами, и охлаждать пробы перед отправкой. Во вложении рекомендации по предотвращении скисания проб молока. </p><br>';
         endif;
@@ -563,12 +563,12 @@ if (CModule::IncludeModule("crm")) {
 
 ?>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
-    </style>
-    <link href="<?= MODULE_PATH ?>/public/crm/sending/conclusion/style.css"
-          rel="stylesheet"
-          type="text/css"/>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
+</style>
+<link href="<?= MODULE_PATH ?>/public/crm/sending/conclusion/style.css"
+    rel="stylesheet"
+    type="text/css" />
 
 <?php
 $buttons = [
@@ -598,24 +598,24 @@ $inputParamsTo = [
     "USE_SYMBOLIC_ID" => true,
     "BUTTON_SELECT_CAPTION" => 'Добавить получателя',
     "SELECTOR_OPTIONS" =>
-        [
-            "departmentSelectDisable" => "Y",
-            'context' => 'MAIL_CLIENT_CONFIG_QUEUE',
-            'contextCode' => 'U',
-            'enableAll' => 'N',
-            'crmPrefixType' => 'SHORT',
-            'userSearchArea' => 'I',
-            'onlyWithEmail' => 'Y',
-            'returnMultiEmail' => 'Y',
-            'returnJsonValue' => 'Y',
-            'enableCrmContacts' => 'Y',
-            'addTabCrmContacts' => 'Y',
-            'enableCrmCompanies' => 'Y',
-            'addTabCrmCompanies' => 'Y',
-            'enableCrm' => 'Y',
-            'allowEmailInvitation' => 'Y',
-            'nameTemplate' => '#NAME# [#EMAIL#]',
-        ]
+    [
+        "departmentSelectDisable" => "Y",
+        'context' => 'MAIL_CLIENT_CONFIG_QUEUE',
+        'contextCode' => 'U',
+        'enableAll' => 'N',
+        'crmPrefixType' => 'SHORT',
+        'userSearchArea' => 'I',
+        'onlyWithEmail' => 'Y',
+        'returnMultiEmail' => 'Y',
+        'returnJsonValue' => 'Y',
+        'enableCrmContacts' => 'Y',
+        'addTabCrmContacts' => 'Y',
+        'enableCrmCompanies' => 'Y',
+        'addTabCrmCompanies' => 'Y',
+        'enableCrm' => 'Y',
+        'allowEmailInvitation' => 'Y',
+        'nameTemplate' => '#NAME# [#EMAIL#]',
+    ]
 ];
 
 $inputParamsCopy = [
@@ -626,335 +626,335 @@ $inputParamsCopy = [
     "USE_SYMBOLIC_ID" => true,
     "BUTTON_SELECT_CAPTION" => 'Добавить получателя',
     "SELECTOR_OPTIONS" =>
-        [
-            "departmentSelectDisable" => "Y",
-            'context' => 'MAIL_CLIENT_CONFIG_QUEUE',
-            'contextCode' => 'U',
-            'enableAll' => 'N',
-            'crmPrefixType' => 'SHORT',
-            'userSearchArea' => 'I',
-            'onlyWithEmail' => 'Y',
-            'returnMultiEmail' => 'Y',
-            'returnJsonValue' => 'Y',
-            'enableCrmContacts' => 'Y',
-            'addTabCrmContacts' => 'Y',
-            'enableCrm' => 'Y',
-            'allowEmailInvitation' => 'Y',
-            'nameTemplate' => '#NAME# [#EMAIL#]',
-        ]
+    [
+        "departmentSelectDisable" => "Y",
+        'context' => 'MAIL_CLIENT_CONFIG_QUEUE',
+        'contextCode' => 'U',
+        'enableAll' => 'N',
+        'crmPrefixType' => 'SHORT',
+        'userSearchArea' => 'I',
+        'onlyWithEmail' => 'Y',
+        'returnMultiEmail' => 'Y',
+        'returnJsonValue' => 'Y',
+        'enableCrmContacts' => 'Y',
+        'addTabCrmContacts' => 'Y',
+        'enableCrm' => 'Y',
+        'allowEmailInvitation' => 'Y',
+        'nameTemplate' => '#NAME# [#EMAIL#]',
+    ]
 ];
 
 ?>
-    <input type="hidden" name="from[]" value="0"/>
-    <div id="from_custom" name="from"></div>
-    <div class="mail">
-        <form method="POST" action="" id="custom-send" enctype="multipart/form-data">
-            <div class="type">
-                <div class="text help">
-                    <span><?= $type ?></span>
-                    <input type="hidden" name="smartId" value="<?= $idSmartProcessElement ?>">
-                    <input type="hidden" name="dealId" value="<?= $id ?>">
-                    <input type="hidden" name="companyId" value="<?= $deal['COMPANY_ID'] ?>">
-                    <input type="hidden" name="idSmartProcessElement" value="<?= $idSmartProcessElement ?>">
+<input type="hidden" name="from[]" value="0" />
+<div id="from_custom" name="from"></div>
+<div class="mail">
+    <form method="POST" action="" id="custom-send" enctype="multipart/form-data">
+        <div class="type">
+            <div class="text help">
+                <span><?= $type ?></span>
+                <input type="hidden" name="smartId" value="<?= $idSmartProcessElement ?>">
+                <input type="hidden" name="dealId" value="<?= $id ?>">
+                <input type="hidden" name="companyId" value="<?= $deal['COMPANY_ID'] ?>">
+                <input type="hidden" name="idSmartProcessElement" value="<?= $idSmartProcessElement ?>">
+            </div>
+        </div>
+        <?php if ($labaratory == 'genetics') { ?>
+            <div class="pattern">
+                <span for="" class="pattern">Шаблон&nbsp;</span>
+                <select id="select-pattern" name="pattern" onchange="changeFunc();">
+                    <option class="set" id='1' value="1">Итоговое заключение</option>
+                    <option class="set" id='2' value="2">Предварительное заключение</option>
+                    <option class="set" id='3' value="3">Повторное Предварительное заключение</option>
+                    <option class="set" id='4' value="4">Молекулярная экспертиза</option>
+                    <option class="set" id='5' value="5">Динамический отчет</option>
+                    <option class="set" id='6' value="6">Отчет по субсидиям</option>
+                </select>
+            </div>
+        <? } ?>
+        <div class="body">
+            <div class="header from ">
+                <span for="" class="title">От кого:&nbsp;</span>
+                <?php //$APPLICATION->IncludeComponent('bitrix:main.user.selector', ' ', $inputParamsFrom,);
+                ?>
+                <div class="wrap-title__input">
+                    <span class="value2"><span><?= $fromName ?> [<?= $fromEmail ?>]</span></span>
+                    <input type="hidden" name="from" value="<?= $fromEmail ?>">
                 </div>
             </div>
-            <?php if ($labaratory == 'genetics') { ?>
-                <div class="pattern">
-                    <span for="" class="pattern">Шаблон&nbsp;</span>
-                    <select id="select-pattern" name="pattern" onchange="changeFunc();">
-                        <option class="set" id='1' value="1">Итоговое заключение</option>
-                        <option class="set" id='2' value="2">Предварительное заключение</option>
-                        <option class="set" id='3' value="3">Повторное Предварительное заключение</option>
-                        <option class="set" id='4' value="4">Молекулярная экспертиза</option>
-                        <option class="set" id='5' value="5">Динамический отчет</option>
-                        <option class="set" id='6' value="6">Отчет по субсидиям</option>
-                    </select>
-                </div>
-            <? } ?>
-            <div class="body">
+            <br>
+
+            <div class="header from ">
+                <?php //implode(', ', $contactsEmailHTML)
+                ?>
+                <span for="" class="title">Кому:&nbsp;</span>
+                <?php $APPLICATION->IncludeComponent('bitrix:main.user.selector', ' ', $inputParamsTo); ?>
+            </div>
+            <br>
+
+            <?php if (!empty($toCopy)): ?>
                 <div class="header from ">
-                    <span for="" class="title">От кого:&nbsp;</span>
-                    <?php //$APPLICATION->IncludeComponent('bitrix:main.user.selector', ' ', $inputParamsFrom,);
-                    ?>
-                    <div class="wrap-title__input">
-                        <span class="value2"><span><?= $fromName ?> [<?= $fromEmail ?>]</span></span>
-                        <input type="hidden" name="from" value="<?= $fromEmail ?>">
-                    </div>
-                </div>
-                <br>
+                    <span for="" class="title">Копия:&nbsp;</span>
+                    <span class="value"><span><?= implode(', ', $toCopy) ?></span></span>
+                </div><br>
+            <?php endif; ?>
 
+            <?php if (!empty($toBCopyes)): ?>
                 <div class="header from ">
-                    <?php //implode(', ', $contactsEmailHTML)
-                    ?>
-                    <span for="" class="title">Кому:&nbsp;</span>
-                    <?php $APPLICATION->IncludeComponent('bitrix:main.user.selector', ' ', $inputParamsTo); ?>
+                    <span for="" class="title">С.Копия:&nbsp;</span>
+                    <?php $APPLICATION->IncludeComponent('bitrix:main.user.selector', ' ', $inputParamsCopy); ?>
+                </div><br>
+            <?php endif; ?>
+
+            <div class="header from ">
+                <span for="" class="title">Тема:&nbsp;</span>
+                <div class="wrap-title__input">
+                    <input name="title" type="text" class="theme" value="<?= $topic ?>">
                 </div>
-                <br>
+            </div>
+            <br>
 
-                <?php if (!empty($toCopy)): ?>
-                    <div class="header from ">
-                        <span for="" class="title">Копия:&nbsp;</span>
-                        <span class="value"><span><?= implode(', ', $toCopy) ?></span></span>
-                    </div><br>
-                <?php endif; ?>
+            <div class="body-text">
+                <?php if ($labaratory == 'genetics') {
+                    $bodySend = $email_body1;
+                ?>
+                    <script>
+                        function changeFunc() {
+                            var selectPattern = document.getElementById("select-pattern");
+                            var selectedValue = selectPattern.options[selectPattern.selectedIndex].value;
 
-                <?php if (!empty($toBCopyes)): ?>
-                    <div class="header from ">
-                        <span for="" class="title">С.Копия:&nbsp;</span>
-                        <?php $APPLICATION->IncludeComponent('bitrix:main.user.selector', ' ', $inputParamsCopy); ?>
-                    </div><br>
-                <?php endif; ?>
-
-                <div class="header from ">
-                    <span for="" class="title">Тема:&nbsp;</span>
-                    <div class="wrap-title__input">
-                        <input name="title" type="text" class="theme" value="<?= $topic ?>">
-                    </div>
-                </div>
-                <br>
-
-                <div class="body-text">
-                    <?php if ($labaratory == 'genetics') {
-                        $bodySend = $email_body1;
-                        ?>
-                        <script>
-                            function changeFunc() {
-                                var selectPattern = document.getElementById("select-pattern");
-                                var selectedValue = selectPattern.options[selectPattern.selectedIndex].value;
-
-                                //if (selectedValue == '1') {
-                                //    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
-                                //    $('.bxlhe-frame').find("input").val('<?php //=addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body1))
-                                ?>//');
-                                //    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?php //=addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body1))
-                                ?>//');
-                                //    <? //$bodySend = $email_body2;
-                                ?>
-                                //} else {
-                                //    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
-                                //    $('.bxlhe-frame').find("input").val('<?php //=addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body2))
-                                ?>//');
-                                //    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?php //=addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body2))
-                                ?>//');
-                                //    <? //$bodySend = $email_body1;
-                                ?>
-                                //}
-                                console.log(selectedValue);
-                                if (selectedValue == '2') {
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
-                                    $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body2)) ?>');
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body2)) ?>');
-                                }
-                                if (selectedValue == '3') {
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
-                                    $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body3)) ?>');
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body3)) ?>');
-                                }
-                                if (selectedValue == '1') {
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
-                                    $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body1)) ?>');
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body1)) ?>');
-                                }
-                                if (selectedValue == '4') {
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
-                                    $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body4)) ?>');
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body4)) ?>');
-                                    $('input.theme').val("<?= $topicMolecularExpertise ?>");
-                                }
-                                if (selectedValue == '5') {
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
-                                    $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body5)) ?>');
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body5)) ?>');
-                                }
-                                if (selectedValue == '6') {
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
-                                    $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body6)) ?>');
-                                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body6)) ?>');
-                                } else {
-                                    $('input.theme').val("<?= $topic ?>");
-                                }
+                            //if (selectedValue == '1') {
+                            //    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
+                            //    $('.bxlhe-frame').find("input").val('<?php //=addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body1))
+                                                                        ?>//');
+                            //    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?php //=addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body1))
+                                                                                                        ?>//');
+                            //    <? //$bodySend = $email_body2;
+                                    ?>
+                            //} else {
+                            //    $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
+                            //    $('.bxlhe-frame').find("input").val('<?php //=addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body2))
+                                                                        ?>//');
+                            //    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?php //=addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body2))
+                                                                                                        ?>//');
+                            //    <? //$bodySend = $email_body1;
+                                    ?>
+                            //}
+                            console.log(selectedValue);
+                            if (selectedValue == '2') {
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
+                                $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body2)) ?>');
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body2)) ?>');
                             }
-                        </script>
-                    <?php } ?>
-                    <?php
-                    $APPLICATION->IncludeComponent(
-                        "bitrix:fileman.light_editor",
-                        "",
-                        array(
-                            "CONTENT" => $bodySend,
-                            "INPUT_NAME" => "bodysend",
-                            "INPUT_ID" => "bodysend",
-                            "WIDTH" => "100%",
-                            "HEIGHT" => "300px",
-                            "RESIZABLE" => "Y",
-                            "AUTO_RESIZE" => "Y",
-                            "VIDEO_ALLOW_VIDEO" => "Y",
-                            "VIDEO_MAX_WIDTH" => "640",
-                            "VIDEO_MAX_HEIGHT" => "480",
-                            "VIDEO_BUFFER" => "20",
-                            "VIDEO_LOGO" => "",
-                            "VIDEO_WMODE" => "transparent",
-                            "VIDEO_WINDOWLESS" => "Y",
-                            "VIDEO_SKIN" => "/bitrix/components/bitrix/player/mediaplayer/skins/bitrix.swf",
-                            "USE_FILE_DIALOGS" => "Y",
-                            "ID" => "",
-                            "JS_OBJ_NAME" => "bodysend"
-                        )
-                    );
-                    ?>
+                            if (selectedValue == '3') {
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
+                                $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body3)) ?>');
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body3)) ?>');
+                            }
+                            if (selectedValue == '1') {
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
+                                $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body1)) ?>');
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body1)) ?>');
+                            }
+                            if (selectedValue == '4') {
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
+                                $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body4)) ?>');
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body4)) ?>');
+                                $('input.theme').val("<?= $topicMolecularExpertise ?>");
+                            }
+                            if (selectedValue == '5') {
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
+                                $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body5)) ?>');
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body5)) ?>');
+                            }
+                            if (selectedValue == '6') {
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").empty();
+                                $('.bxlhe-frame').find("input").val('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body6)) ?>');
+                                $('.bxlhe-editor-cell').find("iframe").contents().find("body").html('<?= addslashes(str_replace(array("\r\n", "\r", "\n"), "<br>", $email_body6)) ?>');
+                            } else {
+                                $('input.theme').val("<?= $topic ?>");
+                            }
+                        }
+                    </script>
+                <?php } ?>
+                <?php
+                $APPLICATION->IncludeComponent(
+                    "bitrix:fileman.light_editor",
+                    "",
+                    array(
+                        "CONTENT" => $bodySend,
+                        "INPUT_NAME" => "bodysend",
+                        "INPUT_ID" => "bodysend",
+                        "WIDTH" => "100%",
+                        "HEIGHT" => "300px",
+                        "RESIZABLE" => "Y",
+                        "AUTO_RESIZE" => "Y",
+                        "VIDEO_ALLOW_VIDEO" => "Y",
+                        "VIDEO_MAX_WIDTH" => "640",
+                        "VIDEO_MAX_HEIGHT" => "480",
+                        "VIDEO_BUFFER" => "20",
+                        "VIDEO_LOGO" => "",
+                        "VIDEO_WMODE" => "transparent",
+                        "VIDEO_WINDOWLESS" => "Y",
+                        "VIDEO_SKIN" => "/bitrix/components/bitrix/player/mediaplayer/skins/bitrix.swf",
+                        "USE_FILE_DIALOGS" => "Y",
+                        "ID" => "",
+                        "JS_OBJ_NAME" => "bodysend"
+                    )
+                );
+                ?>
+            </div>
+            <br>
+            <? if ($filess) { ?>
+                <div class="files help" id="filesBox">
+                    <span for="" class="title">Вложенные файлы:&nbsp;</span>
+                    <span class="value"><?= $files ?></span>
+                    <input name="files" id="filesSend" type="hidden"
+                        value="<?= htmlentities(serialize($arFiles)) ?>">
                 </div>
                 <br>
-                <? if ($filess) { ?>
-                    <div class="files help" id="filesBox">
-                        <span for="" class="title">Вложенные файлы:&nbsp;</span>
-                        <span class="value"><?= $files ?></span>
-                        <input name="files" id="filesSend" type="hidden"
-                               value="<?= htmlentities(serialize($arFiles)) ?>">
-                    </div>
-                    <br>
-                    <input type="checkbox" id="linkCheckbox" name="linkCheckbox">
-                    <label for="linkCheckbox">Отправить файлы ссылками</label><br><br>
-                    <input type="checkbox" id="hideDomainCheckbox" name="hideDomainCheckbox" checked="checked" disabled>
-                    <label for="hideDomainCheckbox">Скрыть домен agrochemist.ru для файлов отправленных ссылками</label>
-                <? } ?>
-            </div>
-            <?
-            // if ($fileSize > 16777216) {
-            //if ($fileSize > 9800000) {
-            //
-            ?>
-            <!--                <div>-->
-            <!--                    <button disabled id='btn_send' type='submit' class="button send calm"-->
-            <!--                            style="background-color: gray; display:inline;">-->
-            <!--                        <span class="calm">Отправить</span>-->
-            <!--                    </button>-->
-            <!--                    <span class="value2" style="font-weight: bold;">Размер приложенных к письму файлов превышает возможности почтового сервиса Unisender. Сообщение не может быть отправлено</span>-->
-            <!--                </div>-->
-            <? //} else {
-            ?>
-            <button id='btn_send' type='submit' class="button send calm">
-                <span class="calm">Отправить</span>
-                <span class="loading"><img src="/crm-webhook/sendgrid-php-send-mail/spinning-circles.svg"></span>
-                <span class="ready">Отправлено</span>
-                <span class="error">Ошибка</span>
-            </button>
-            <? // }
-            ?>
-        </form>
-    </div>
+                <input type="checkbox" id="linkCheckbox" name="linkCheckbox">
+                <label for="linkCheckbox">Отправить файлы ссылками</label><br><br>
+                <input type="checkbox" id="hideDomainCheckbox" name="hideDomainCheckbox" checked="checked" disabled>
+                <label for="hideDomainCheckbox">Скрыть домен agrochemist.ru для файлов отправленных ссылками</label>
+            <? } ?>
+        </div>
+        <?
+        // if ($fileSize > 16777216) {
+        //if ($fileSize > 9800000) {
+        //
+        ?>
+        <!--                <div>-->
+        <!--                    <button disabled id='btn_send' type='submit' class="button send calm"-->
+        <!--                            style="background-color: gray; display:inline;">-->
+        <!--                        <span class="calm">Отправить</span>-->
+        <!--                    </button>-->
+        <!--                    <span class="value2" style="font-weight: bold;">Размер приложенных к письму файлов превышает возможности почтового сервиса Unisender. Сообщение не может быть отправлено</span>-->
+        <!--                </div>-->
+        <? //} else {
+        ?>
+        <button id='btn_send' type='submit' class="button send calm">
+            <span class="calm">Отправить</span>
+            <span class="loading"><img src="/crm-webhook/sendgrid-php-send-mail/spinning-circles.svg"></span>
+            <span class="ready">Отправлено</span>
+            <span class="error">Ошибка</span>
+        </button>
+        <? // }
+        ?>
+    </form>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const filesBox = document.getElementById('filesBox');
-            const checkbox = document.getElementById('linkCheckbox');
-            const hideDomainCheckbox = document.getElementById('hideDomainCheckbox');
-            const filesSend = document.getElementById('filesSend');
-            let iframe = document.querySelector('.bx-core .mail .body .body-text .lha-iframe');
-            let iframeDocument = iframe.contentDocument;
-            const mailFiles = iframeDocument.querySelector('.mailFiles');
-            const bodyMail = iframeDocument.getElementById('bodyMail');
-            const signature = iframeDocument.getElementById('signature');
-            const filesSendOriginalValue = filesSend.value;
-            // if (<?= $fileSize ?> > MAX_FILESIZE_IN_BODY) {
-            if (<?= $fileSize ?> > 9800000) {
-                checkbox.checked = true;
-                checkbox.disabled = true;
-                filesBox.style.display = 'none';
-            }
-
-            function checkFiles() {
-                if (checkbox.checked) {
-                    filesBox.style.display = 'none';
-                    filesSend.value = [];
-                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html(bodyMail.innerHTML + mailFiles.innerHTML + signature.innerHTML);
-                    $('.bxlhe-frame').find("input").val(bodyMail.innerHTML + mailFiles.innerHTML + signature.innerHTML);
-                } else {
-                    filesBox.style.display = 'flex';
-                    filesSend.value = filesSendOriginalValue;
-                    $('.bxlhe-editor-cell').find("iframe").contents().find("body").html(bodyMail.innerHTML + signature.innerHTML);
-                    $('.bxlhe-frame').find("input").val(bodyMail.innerHTML + signature.innerHTML);
-                }
-            }
-
-            function changeLinks() {
-                if (hideDomainCheckbox.checked) {
-                    mailFiles.innerHTML = '<?= $fileLinksHide ?>';
-                } else {
-                    mailFiles.innerHTML = '<?= $fileLinksShow ?>';
-                }
-                checkFiles();
-            }
-
-            hideDomainCheckbox.addEventListener('change', changeLinks);
-            checkbox.addEventListener('change', checkFiles);
-            checkFiles();
-        },);
-
-        $('#custom-send').on("submit", function () {
-            event.preventDefault();
-            let formData = $('#custom-send').serialize();
-            let button = $('#btn_send');
-            if ($(button).hasClass('calm')) {
-                let rezult = $('#rezult pre');
-                $(button).toggleClass('calm loading');
-                $.ajax({
-                    url: "/alter/crm/sending/conclusion/bitrix_send.php",
-                    method: 'POST',
-                    data: formData,
-                    success: function (data) {
-                        $(button).toggleClass('loading ready');
-                        $(rezult).html(data);
-                    },
-                    error: function (data) {
-                        $(button).toggleClass('loading error');
-                        $(rezult).html(data['status']);
-                    },
-                });
-            }
-        });
-
-        $('.mail .type .question').click(function () {
-            $(this).toggleClass('active');
-            $('.mail').toggleClass('question');
-        });
-
-        if ($(button).hasClass("ready")) {
-
-            alert("У элемента есть класс ready!");
-
-            // Здесь может быть любой другой ваш код
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filesBox = document.getElementById('filesBox');
+        const checkbox = document.getElementById('linkCheckbox');
+        const hideDomainCheckbox = document.getElementById('hideDomainCheckbox');
+        const filesSend = document.getElementById('filesSend');
+        let iframe = document.querySelector('.bx-core .mail .body .body-text .lha-iframe');
+        let iframeDocument = iframe.contentDocument;
+        const mailFiles = iframeDocument.querySelector('.mailFiles');
+        const bodyMail = iframeDocument.getElementById('bodyMail');
+        const signature = iframeDocument.getElementById('signature');
+        const filesSendOriginalValue = filesSend.value;
+        // if (<?= $fileSize ?> > MAX_FILESIZE_IN_BODY) {
+        if (<?= $fileSize ?> > 9800000) {
+            checkbox.checked = true;
+            checkbox.disabled = true;
+            filesBox.style.display = 'none';
         }
 
-        /*(function() { const tagSelector = new BX.UI.EntitySelector.TagSelector({
-            id: 'from_custom',
-            multiple: 'Y',
-            dialogOptions: {
-                context: 'MY_MODULE_CONTEXT',
-                entities: [
-                    {data
-                        id: 'user', // пользователи
-                    },
-                    {
-                        id: 'project', // группы и проекты
-                    },
-                    {
-                        id: 'department', // структура компании
-                        options: {
-                            selectMode: 'usersAndDepartments' // выбор пользователей и отделов
-                        }
-                    },
-                    {
-                        id: 'meta-user',
-                        options: {
-                            'all-users': true // Все сотрудники
-                        }
-                    },
-                ],
+        function checkFiles() {
+            if (checkbox.checked) {
+                filesBox.style.display = 'none';
+                filesSend.value = [];
+                $('.bxlhe-editor-cell').find("iframe").contents().find("body").html(bodyMail.innerHTML + mailFiles.innerHTML + signature.innerHTML);
+                $('.bxlhe-frame').find("input").val(bodyMail.innerHTML + mailFiles.innerHTML + signature.innerHTML);
+            } else {
+                filesBox.style.display = 'flex';
+                filesSend.value = filesSendOriginalValue;
+                $('.bxlhe-editor-cell').find("iframe").contents().find("body").html(bodyMail.innerHTML + signature.innerHTML);
+                $('.bxlhe-frame').find("input").val(bodyMail.innerHTML + signature.innerHTML);
             }
-        });
-            tagSelector.renderTo(document.getElementById('from_custom'))})();*/
-    </script>
+        }
+
+        function changeLinks() {
+            if (hideDomainCheckbox.checked) {
+                mailFiles.innerHTML = '<?= $fileLinksHide ?>';
+            } else {
+                mailFiles.innerHTML = '<?= $fileLinksShow ?>';
+            }
+            checkFiles();
+        }
+
+        hideDomainCheckbox.addEventListener('change', changeLinks);
+        checkbox.addEventListener('change', checkFiles);
+        checkFiles();
+    }, );
+
+    $('#custom-send').on("submit", function() {
+        event.preventDefault();
+        let formData = $('#custom-send').serialize();
+        let button = $('#btn_send');
+        if ($(button).hasClass('calm')) {
+            let rezult = $('#rezult pre');
+            $(button).toggleClass('calm loading');
+            $.ajax({
+                url: "/alter/crm/sending/conclusion/bitrix_send.php",
+                method: 'POST',
+                data: formData,
+                success: function(data) {
+                    $(button).toggleClass('loading ready');
+                    $(rezult).html(data);
+                },
+                error: function(data) {
+                    $(button).toggleClass('loading error');
+                    $(rezult).html(data['status']);
+                },
+            });
+        }
+    });
+
+    $('.mail .type .question').click(function() {
+        $(this).toggleClass('active');
+        $('.mail').toggleClass('question');
+    });
+
+    if ($(button).hasClass("ready")) {
+
+        alert("У элемента есть класс ready!");
+
+        // Здесь может быть любой другой ваш код
+
+    }
+
+    /*(function() { const tagSelector = new BX.UI.EntitySelector.TagSelector({
+        id: 'from_custom',
+        multiple: 'Y',
+        dialogOptions: {
+            context: 'MY_MODULE_CONTEXT',
+            entities: [
+                {data
+                    id: 'user', // пользователи
+                },
+                {
+                    id: 'project', // группы и проекты
+                },
+                {
+                    id: 'department', // структура компании
+                    options: {
+                        selectMode: 'usersAndDepartments' // выбор пользователей и отделов
+                    }
+                },
+                {
+                    id: 'meta-user',
+                    options: {
+                        'all-users': true // Все сотрудники
+                    }
+                },
+            ],
+        }
+    });
+        tagSelector.renderTo(document.getElementById('from_custom'))})();*/
+</script>
 <?php
 echo file_get_contents('help.html');
 
