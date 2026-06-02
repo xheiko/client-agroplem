@@ -1043,11 +1043,16 @@ class Deal
             new \DateTime('today 23:59:59')
         );
 
+        $context = new \Bitrix\Crm\Service\Context();
+        $context->setUserId(1);
+
         $filter = [
             '>=DATE_MODIFY' => $todayStart,
             '<=DATE_MODIFY' => $todayEnd,
 
-            '!STAGE_ID' => ['C9:NEW', 'C1:NEW', 'C2:NEW', 'C3:NEW', 'C4:NEW', 'C5:NEW', 'C6:NEW'], //стадии черновика
+            //    '!STAGE_ID' => ['C9:NEW', 'C1:NEW', 'C2:NEW', 'C3:NEW', 'C4:NEW', 'C5:NEW', 'C6:NEW'], //стадии черновика
+            '!STAGE_ID' => ['%:NEW'], //стадии черновика
+
             '!STAGE_SEMANTIC_ID' => 'F', // неуспешные сделки
 
             '!UF_CRM_DEAL_3867773618127' => false, //Номер 1с
@@ -1056,11 +1061,12 @@ class Deal
         ];
 
         $dealIds = [];
+        $updatedIds = [];
 
         $res = \Bitrix\Crm\DealTable::getList([
             'select' => ['ID'],
             'filter' => $filter,
-            'limit' => 20,
+            //'limit' => 20,
         ]);
 
         while ($row = $res->fetch()) {
@@ -1082,34 +1088,164 @@ class Deal
         $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Deal);
 
         foreach ($dealIds as $dealId) {
-            $item = $factory->getItem($dealId);
+            //  $item = $factory->getItem($dealId);
 
-            if (!$item) {
-                continue;
-            }
+//            if (!$item) {
+//                continue;
+//            }
             // "Дополнительно об источнике"
-            $sourceDescription = $item->get('SOURCE_DESCRIPTION');
-            $sourceDescription .= '.';
-            $item->set('SOURCE_DESCRIPTION', $sourceDescription);
+//            $sourceDescription = $item->get('UF_CRM_UF_DEBUG');
+//            $sourceDescription .= '.';
+//            $item->set('UF_CRM_UF_DEBUG', $sourceDescription);
+//
+//            $operation = $factory->getUpdateOperation($item, $context);
+//            $operation->disableCheckAccess();
+//
+//            $result = $operation->launch();
+            //       $dealId = 31197;
 
-            $operation = $factory->getUpdateOperation($item);
-            $operation->disableCheckAccess();
+            $data = [
+                'id' => $dealId,
+                'fields' => [
+                    'UF_CRM_UF_DEBUG' => time(),
+                ],
+            ];
+            $webhook = 'https://bitrix.agroplem.ru/rest/1/y28ul9dnvqsh57mt/crm.deal.update.json';
+            $ch = curl_init();
+            curl_setopt_array($ch, [
+                CURLOPT_URL => $webhook,
+                CURLOPT_POST => true,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_POSTFIELDS => http_build_query($data),
+            ]);
 
-            $result = $operation->launch();
+            $result = curl_exec($ch);
+            $error = curl_error($ch);
+            curl_close($ch);
 
-            if (!$result->isSuccess()) {
+
+            if (!$error) {
+                $updatedIds[] = $dealId;
+            }
+
+            if ($error) {
                 \Bitrix\Main\Loader::includeModule('im');
                 \CIMNotify::Add([
                     'TO_USER_ID' => 106, //танаис бот
                     'FROM_USER_ID' => 1,
                     'NOTIFY_TYPE' => IM_NOTIFY_SYSTEM,
                     'NOTIFY_MODULE' => 'tanais.alter',
-                    'MESSAGE' => 'Ошибка обновления сделки ID \Tanais\Alter\Crm\Deal::resendTodayDealsToOne' . $dealId . ': ' . implode('; ', $result->getErrorMessages()),
+                    'MESSAGE' => 'Ошибка обновления сделки \Tanais\Alter\Crm\Deal::resendTodayDealsToOne ID: ' . $dealId . ': ' . $error,
                 ]);
             }
         }
+        \Bitrix\Main\Loader::includeModule('im');
+        \CIMNotify::Add([
+            'TO_USER_ID' => 106, //танаис бот
+            'FROM_USER_ID' => 1,
+            'NOTIFY_TYPE' => IM_NOTIFY_SYSTEM,
+            'NOTIFY_MODULE' => 'tanais.alter',
+            'MESSAGE' => 'Обновлены сделки ' . implode(', ', $updatedIds),
+        ]);
 
         return true;
     }
 
+    public static function resendTodayDealsToYear(): bool
+    {
+        if (!\Bitrix\Main\Loader::includeModule('crm')) {
+            return false;
+        }
+        $todayStart = \Bitrix\Main\Type\DateTime::createFromPhp(
+            new \DateTime('today 00:00:00')
+        );
+
+        $todayEnd = \Bitrix\Main\Type\DateTime::createFromPhp(
+            new \DateTime('today 23:59:59')
+        );
+
+        $filter = [
+            '>=DATE_CREATE' => \Bitrix\Main\Type\DateTime::createFromPhp(
+                new \DateTime('2026-05-01 00:00:00')
+            ),
+            '<=DATE_CREATE' => \Bitrix\Main\Type\DateTime::createFromPhp(
+                new \DateTime('2026-06-01 23:59:59')
+            ),
+            [
+                'LOGIC' => 'OR',
+                '<DATE_MODIFY' => $todayStart,
+                '>DATE_MODIFY' => $todayEnd,
+            ],
+            '!STAGE_ID' => ['%:NEW'], //стадии черновика
+
+            '!STAGE_SEMANTIC_ID' => 'F', // неуспешные сделки
+
+            '!UF_CRM_DEAL_3867773618127' => false, //Номер 1с
+
+            '!CATEGORY_ID' => [8, 0],
+        ];
+
+        $dealIds = [];
+        $updatedIds = [];
+
+        $res = \Bitrix\Crm\DealTable::getList([
+            'select' => ['ID'],
+            'filter' => $filter,
+            //  'limit' => 20,
+        ]);
+
+        while ($row = $res->fetch()) {
+            $dealIds[] = (int)$row['ID'];
+        }
+
+        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Deal);
+
+        foreach ($dealIds as $dealId) {
+
+            $data = [
+                'id' => $dealId,
+                'fields' => [
+                    'UF_CRM_UF_DEBUG' => time(),
+                ],
+            ];
+            $webhook = 'https://bitrix.agroplem.ru/rest/1/y28ul9dnvqsh57mt/crm.deal.update.json';
+            $ch = curl_init();
+            curl_setopt_array($ch, [
+                CURLOPT_URL => $webhook,
+                CURLOPT_POST => true,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_POSTFIELDS => http_build_query($data),
+            ]);
+
+            $result = curl_exec($ch);
+            $error = curl_error($ch);
+            curl_close($ch);
+
+
+            if (!$error) {
+                $updatedIds[] = $dealId;
+            }
+
+            if ($error) {
+                \Bitrix\Main\Loader::includeModule('im');
+                \CIMNotify::Add([
+                    'TO_USER_ID' => 106, //танаис бот
+                    'FROM_USER_ID' => 1,
+                    'NOTIFY_TYPE' => IM_NOTIFY_SYSTEM,
+                    'NOTIFY_MODULE' => 'tanais.alter',
+                    'MESSAGE' => 'Ошибка обновления сделки \Tanais\Alter\Crm\Deal::resendTodayDealsToOne ID: ' . $dealId . ': ' . $error,
+                ]);
+            }
+        }
+        \Bitrix\Main\Loader::includeModule('im');
+        \CIMNotify::Add([
+            'TO_USER_ID' => 106, //танаис бот
+            'FROM_USER_ID' => 1,
+            'NOTIFY_TYPE' => IM_NOTIFY_SYSTEM,
+            'NOTIFY_MODULE' => 'tanais.alter',
+            'MESSAGE' => 'Обновлены сделки ID:' . implode(', ', $updatedIds) . ' в количестве ' . count($updatedIds),
+        ]);
+
+        return true;
+    }
 }

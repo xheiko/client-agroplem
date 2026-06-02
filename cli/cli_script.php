@@ -8,12 +8,85 @@ define('BX_WITH_ON_AFTER_EPILOG', true);
 define('BX_NO_ACCELERATOR_RESET', true);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
+\Bitrix\Main\Loader::includeModule('tanais.alter');
+\Tanais\Alter\Crm\Deal::resendTodayDealsToYear();
+// global $USER;
+// if(empty($USER)){
+// $USER = new \CUser();
+// }
+// $USER->Authorize(1); // авторизуем
 
-global $USER;
-if(empty($USER)){
-$USER = new \CUser();
-}
-$USER->Authorize(106); // авторизуем
+// $dealId = 31197;
+
+// $data = [
+//     'id' => $dealId,
+//     'fields' => [
+//         'UF_CRM_UF_DEBUG' => time(),
+//     ],
+// ];
+//  $webhook = 'https://bitrix.agroplem.ru/rest/1/y28ul9dnvqsh57mt/crm.deal.update.json';
+// $ch = curl_init();
+// curl_setopt_array($ch, [
+//     CURLOPT_URL => $webhook,
+//     CURLOPT_POST => true,
+//     CURLOPT_RETURNTRANSFER => true,
+//     CURLOPT_POSTFIELDS => http_build_query($data),
+// ]);
+
+// $result = curl_exec($ch);
+// $error = curl_error($ch);
+// curl_close($ch);
+
+// if ($error) {
+//     echo 'cURL error: ' . $error;
+// } else {
+//     echo $result . ' DEAL_ID '. $dealId;
+// }
+
+//         $context = new \Bitrix\Crm\Service\Context();
+//         $context->setUserId(1);
+// $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Deal);
+// $item = $factory->getItem(31197);
+//             $sourceDescription = $item->get('UF_CRM_UF_DEBUG');
+//             $sourceDescription .= '.';
+//             $item->set('UF_CRM_UF_DEBUG', $sourceDescription);
+
+//             $operation = $factory->getUpdateOperation($item,$context);
+//             $operation->disableCheckAccess();
+
+//             $result = $operation->launch();
+// \Bitrix\Main\Loader::includeModule('crm');
+
+// $dealId = 31197;
+
+// $fields = [
+//     'UF_CRM_UF_DEBUG' => date('his'),
+// ];
+
+// $deal = new \CCrmDeal(false);
+
+// $result = $deal->Update(
+//     $dealId,
+//     $fields,
+//     true,
+//     true,
+//     [
+//         'CURRENT_USER' => 1,
+//     ]
+// );
+
+// if (!$result) {
+//     global $APPLICATION;
+//     echo $APPLICATION->GetException()->GetString();
+// } else {
+//     echo 'Сделка обновлена';
+// }
+
+// global $USER;
+// if(empty($USER)){
+// $USER = new \CUser();
+// }
+// $USER->Authorize(106); // авторизуем
 
 
 /*
@@ -57,48 +130,48 @@ foreach ($companies as $company) {
 // echo "Всего:" . $count++;
 
 
-\Bitrix\Main\Loader::includeModule('bizproc');
-\Bitrix\Main\Loader::includeModule('crm');
+// \Bitrix\Main\Loader::includeModule('bizproc');
+// \Bitrix\Main\Loader::includeModule('crm');
 
-$bzId = 12; //id-бп
-$arErrorsTmp = []; 
-$arDeals = \Bitrix\Crm\DealTable::getList([
-'order'=>['ID' => 'DESC'],
-'filter'=>['>UF_CRM_SHIPMENT_PROCENT'=> 0, '<DATE_MODIFY' => '03.04.2026','!CATEGORY_ID' => [0,8,],],
-'select'=>['ID'],
-//'limit'=>50,
-]);
- //$factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Deal);
-  $webhook = 'https://bitrix.agroplem.ru/rest/106/z7otmsnmibr28fvr/crm.deal.update.json';
-while( $entity = $arDeals->fetch() )
-{
+// $bzId = 12; //id-бп
+// $arErrorsTmp = []; 
+// $arDeals = \Bitrix\Crm\DealTable::getList([
+// 'order'=>['ID' => 'DESC'],
+// 'filter'=>['>UF_CRM_SHIPMENT_PROCENT'=> 0, '<DATE_MODIFY' => '03.04.2026','!CATEGORY_ID' => [0,8,],],
+// 'select'=>['ID'],
+// //'limit'=>50,
+// ]);
+//  //$factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Deal);
+//   $webhook = 'https://bitrix.agroplem.ru/rest/106/z7otmsnmibr28fvr/crm.deal.update.json';
+// while( $entity = $arDeals->fetch() )
+// {
 
-$dealId = $entity['ID']; // ID сделки
+// $dealId = $entity['ID']; // ID сделки
 
-$data = [
-    'id' => $dealId,
-    'fields' => [
-        'UF_CRM_1775215279730' => time(),
-    ],
-];
+// $data = [
+//     'id' => $dealId,
+//     'fields' => [
+//         'UF_CRM_1775215279730' => time(),
+//     ],
+// ];
 
-$ch = curl_init();
-curl_setopt_array($ch, [
-    CURLOPT_URL => $webhook,
-    CURLOPT_POST => true,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_POSTFIELDS => http_build_query($data),
-]);
+// $ch = curl_init();
+// curl_setopt_array($ch, [
+//     CURLOPT_URL => $webhook,
+//     CURLOPT_POST => true,
+//     CURLOPT_RETURNTRANSFER => true,
+//     CURLOPT_POSTFIELDS => http_build_query($data),
+// ]);
 
-$result = curl_exec($ch);
-$error = curl_error($ch);
-curl_close($ch);
+// $result = curl_exec($ch);
+// $error = curl_error($ch);
+// curl_close($ch);
 
-if ($error) {
-    echo 'cURL error: ' . $error;
-} else {
-    echo $result . ' DEAL_ID '. $dealId;
-}
+// if ($error) {
+//     echo 'cURL error: ' . $error;
+// } else {
+//     echo $result . ' DEAL_ID '. $dealId;
+// }
    // \Tanais\Alter\Crm\Deal::startDealBPWorkflow(12,$entity['ID']);
    //  $wfId = \CBPDocument::StartWorkflow(
    // $bzId,
@@ -119,4 +192,4 @@ if ($error) {
 // {
 //      d($saveResult->getErrorMessages());
 // }
-}
+//}
