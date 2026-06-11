@@ -1029,26 +1029,30 @@ class Deal
         //  d($ar);
     }
 
-    public static function resendTodayDealsToOne(): bool
+    public static function resendTodayDealsToOne($date = null): bool
     {
         if (!\Bitrix\Main\Loader::includeModule('crm')) {
             return false;
         }
+        $date = $date ?: date('d.m.Y');
 
-        $todayStart = \Bitrix\Main\Type\DateTime::createFromPhp(
-            new \DateTime('today 00:00:00')
-        );
+        try {
+            $dayStartPhp = new \DateTime($date . ' 00:00:00');
+            $dayEndPhp = new \DateTime($date . ' 23:59:59');
+        } catch (\Throwable $e) {
+            self::notifyBot('Некорректная дата для resendTodayDealsToOne: ' . $date);
+            return false;
+        }
 
-        $todayEnd = \Bitrix\Main\Type\DateTime::createFromPhp(
-            new \DateTime('today 23:59:59')
-        );
+        $dayStart = \Bitrix\Main\Type\DateTime::createFromPhp($dayStartPhp);
+        $dayEnd = \Bitrix\Main\Type\DateTime::createFromPhp($dayEndPhp);
 
         $context = new \Bitrix\Crm\Service\Context();
         $context->setUserId(1);
 
         $filter = [
-            '>=DATE_MODIFY' => $todayStart,
-            '<=DATE_MODIFY' => $todayEnd,
+            '>=DATE_MODIFY' => $dayStart,
+            '<=DATE_MODIFY' => $dayEnd,
 
             //    '!STAGE_ID' => ['C9:NEW', 'C1:NEW', 'C2:NEW', 'C3:NEW', 'C4:NEW', 'C5:NEW', 'C6:NEW'], //стадии черновика
             '!STAGE_ID' => ['%:NEW'], //стадии черновика
@@ -1066,7 +1070,7 @@ class Deal
         $res = \Bitrix\Crm\DealTable::getList([
             'select' => ['ID'],
             'filter' => $filter,
-            //'limit' => 20,
+           // 'limit' => 1,
         ]);
 
         while ($row = $res->fetch()) {
@@ -1110,25 +1114,48 @@ class Deal
                     'UF_CRM_UF_DEBUG' => time(),
                 ],
             ];
-            $webhook = 'https://bitrix.agroplem.ru/rest/1/y28ul9dnvqsh57mt/crm.deal.update.json';
-            $ch = curl_init();
-            curl_setopt_array($ch, [
-                CURLOPT_URL => $webhook,
-                CURLOPT_POST => true,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_POSTFIELDS => http_build_query($data),
-            ]);
+            try {
+                $webhook = 'https://bitrix.agroplem.ru/rest/1/y28ul9dnvqsh57mt/crm.deal.update.json';
+                $ch = curl_init();
+                curl_setopt_array($ch, [
+                    CURLOPT_URL => $webhook,
+                    CURLOPT_POST => true,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_POSTFIELDS => http_build_query($data),
+                ]);
 
-            $result = curl_exec($ch);
-            $error = curl_error($ch);
-            curl_close($ch);
+                $curlResult = curl_exec($ch);
+                $curlError = curl_error($ch);
+                $httpCode = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
+                curl_close($ch);
 
-            if (!$error) {
+                if ($curlError) {
+                    $error = $curlError;
+                    \Tanais\Alter\Log::saveToFile('resendTodayDealsToOne', $error, FILE_APPEND);
+                }
+
+                if ($httpCode < 200 || $httpCode >= 300) {
+                    $error = 'HTTP ошибка: ' . $httpCode . '. Ответ: ' . $curlResult;
+                    \Tanais\Alter\Log::saveToFile('resendTodayDealsToOne', $error . $curlResult, FILE_APPEND);
+                }
+
+                $response = json_decode($curlResult, true);
+
+                if (!is_array($response)) {
+                    $error = 'Некорректный JSON-ответ: ' . $curlResult;
+                    \Tanais\Alter\Log::saveToFile('resendTodayDealsToOne', $error, FILE_APPEND);
+                }
+
+                if (isset($response['error'])) {
+                    $errorDescription = $response['error_description'] ?? '';
+                    $error = 'REST ошибка: ' . $response['error'] . ' — ' . $errorDescription;
+                    \Tanais\Alter\Log::saveToFile('resendTodayDealsToOne', 'REST ошибка: ' . $error, FILE_APPEND);
+                }
+
                 $updatedIds[] = $dealId;
-            }
 
-            if ($error) {
+            } catch (\Throwable $e) {
                 \Bitrix\Main\Loader::includeModule('im');
                 \CIMNotify::Add([
                     'TO_USER_ID' => 106, //танаис бот
@@ -1137,6 +1164,7 @@ class Deal
                     'NOTIFY_MODULE' => 'tanais.alter',
                     'MESSAGE' => 'Ошибка обновления сделки \Tanais\Alter\Crm\Deal::resendTodayDealsToOne ID: ' . $dealId . ': ' . $error,
                 ]);
+                continue;
             }
         }
         \Bitrix\Main\Loader::includeModule('im');

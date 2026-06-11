@@ -9,7 +9,9 @@ define('BX_NO_ACCELERATOR_RESET', true);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 \Bitrix\Main\Loader::includeModule('tanais.alter');
-\Tanais\Alter\Crm\Deal::resendTodayDealsToYear();
+   // \Tanais\Alter\Cron::doInNight();
+    \Tanais\Alter\Crm\Deal::resendTodayDealsToOne('02.06.2026');
+//\Tanais\Alter\Crm\Deal::resendTodayDealsToYear();
 // global $USER;
 // if(empty($USER)){
 // $USER = new \CUser();
